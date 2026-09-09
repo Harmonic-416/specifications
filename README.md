@@ -17,7 +17,8 @@ specifications/
 ├── 1-problem-and-users/
 │   ├── problem.md                   ← the burnout problem, market gaps, users, why a semester
 │   ├── user-stories.md              ← "As a… I want… so that…" for every user type
-│   └── competitors-and-examples.md  ← commercial competitors, OSS prior art, who's making money
+│   ├── competitors-and-examples.md  ← competitors + their documented user problems, OSS prior art, who's making money
+│   └── user-pain-stories.md         ← real verbatim stories from the internet, by theme, all sourced
 │
 ├── 2-scope/
 │   ├── v1-scope.md                  ← what's IN v1, what's explicitly OUT, won't-dos
@@ -33,7 +34,8 @@ specifications/
 
 1. [Problem](1-problem-and-users/problem.md) →
    [User stories](1-problem-and-users/user-stories.md) →
-   [Competitors & examples](1-problem-and-users/competitors-and-examples.md)
+   [Competitors & examples](1-problem-and-users/competitors-and-examples.md) →
+   [Real user pain stories](1-problem-and-users/user-pain-stories.md)
 2. [V1 scope](2-scope/v1-scope.md) →
    [Requirements](2-scope/requirements.md) →
    [Potential problems](2-scope/potential-problems.md)
