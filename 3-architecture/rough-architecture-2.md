@@ -1,6 +1,5 @@
 # Rough Architecture
 
-(Second pass — same diagram as before, unchanged in structure. Added: instrument-specific detail for the pitch/chord modules, and an explicit modularity write-up. See `tech-stack.md` for the resolved Flutter/PWA and server decisions.)
 
 ```mermaid
 flowchart TB
@@ -64,7 +63,7 @@ Both instruments start from the same shared buffer (decision #4). They diverge a
 1. **Pluggable analyzers on a shared pipeline.** Pitch, chord, and volume detectors are three independent modules reading the same AudioWorklet buffer. A new instrument means writing or reusing an analyzer — it does not require touching mic capture, the worklet, or the scoring engine.
 2. **An instrument-agnostic scoring engine.** The scoring engine only consumes the normalized `{note, timestamp, confidence}` event, compared against expected notes parsed by alphaTab. It has no instrument-specific logic. So supporting a new instrument is: (a) one new analyzer emitting the standard event shape, plus (b) song data alphaTab already knows how to parse.
 
-## Open items carried over
+## Other to-do 
 
-- Confirm real-device audio latency on iOS Safari before going further — this is the single biggest technical risk regardless of framework.
+- Confirm real-device audio latency on iOS Safari before going further
 - MediaPipe hand tracking and group sessions remain explicitly V2+/stretch.
