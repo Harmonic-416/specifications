@@ -6,11 +6,21 @@ We're going with **plain-web / JS PWA**, not Flutter.
 
 **Why:** the team's shared skillset is web JS, not Dart, and a PWA is a single codebase deployed like a normal website — no separate native build pipeline per platform. Flutter would give more native performance and device-API access, but that's not worth the ramp-up cost. The one real technical risk (mic access + low-latency AudioWorklet processing on mobile Safari) exists either way, since it's a browser-engine limitation, not a framework choice — so PWA doesn't add any new risk Flutter would have avoided.
 
-> Implementation note: build and test the pitch-detection pipeline **on an actual phone in Safari** before committing further — that's the biggest unknown we ahve, regardless of which UI framework sits on top.
+> Implementation note (carried over): build and test the pitch-detection pipeline **on an actual phone in Safari** before committing further — that's the biggest unknown, regardless of which UI framework sits on top.
+
+## UI framework: React (resolved)
+
+The tech stack below picks libraries for specific features (notation, pitch detection, PWA infra) but never stated what we're actually building the screens/navigation/buttons with. Resolving that here.
+
+**Decision: React**, bundled with **Vite** as the build tool.
+
+**Why:** Vite is already implied by `vite-plugin-pwa` below — Vite is the tool that packages and optimizes our JS/HTML/CSS into something that runs fast in a browser, and the PWA plugin is built specifically to plug into it. React is the most common pairing with Vite, and lets the UI be built out of small reusable pieces ("components") instead of one large tangled file — this matters here specifically because the UI layer needs to display live feedback from the scoring engine on every note, and component-based UI makes that kind of frequent, targeted screen updates easier to manage than plain hand-written JS.
+
+Plain vanilla JS (no framework) was the other option — it would avoid learning a framework at all, but would make the lesson map, playlist, and live-feedback UI meaningfully more code to hand-maintain as the app grows. 
 
 ## Server: Supabase (resolved)
 
-The "Server" box in the architecture diagram is **Supabase**, not a custom Node/Express backend. Supabase bundles Postgres (DB), authentication, and file storage behind a JS SDK and auto-generated REST API. For V1, the server only needs to do CRUD (auth, save scores/progress, serve song files) — all of which Supabase covers out of the box. A custom backend would only become necessary if we need server logic Supabase can't express directly.
+The "Server" box in the architecture diagram is **Supabase**, not a custom Node/Express backend. Supabase bundles Postgres (DB), authentication, and file storage behind a JS SDK and auto-generated REST API. For V1, the server only needs to do CRUD (auth, save scores/progress, serve song files) — all of which Supabase covers out of the box. A custom backend would only become necessary if we need server logic Supabase can't express directly; not needed for this milestone.
 
 ## Library list (web/JS stack), by feature
 
