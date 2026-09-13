@@ -12,13 +12,11 @@ We're going with **plain-web / JS PWA**, not Flutter.
 
 **Decision: React**, bundled with **Vite** as the build tool.
 
-**Why:** Vite is already implied by `vite-plugin-pwa` below — Vite is the tool that packages and optimizes our JS/HTML/CSS into something that runs fast in a browser, and the PWA plugin is built specifically to plug into it. React is the most common pairing with Vite, and lets the UI be built out of small reusable pieces ("components") instead of one large tangled file — this matters here specifically because the UI layer needs to display live feedback from the scoring engine on every note, and component-based UI makes that kind of frequent, targeted screen updates easier to manage than plain hand-written JS.
-
-Plain vanilla JS (no framework) was the other option — it would avoid learning a framework at all, but would make the lesson map, playlist, and live-feedback UI meaningfully more code to hand-maintain as the app grows. 
+**Why:** Vite is the tool that packages and optimizes our JS/HTML/CSS into something that runs fast in a browser, and the PWA plugin is built specifically to plug into it. React is the most common pairing with Vite, and lets the UI be built out of small reusable pieces ("components") instead of one large tangled file — this matters here specifically because the UI layer needs to display live feedback from the scoring engine on every note, and component-based UI makes that kind of frequent, targeted screen updates easier to manage than plain hand-written JS.
 
 ## Server: Supabase 
 
-The "Server" box in the architecture diagram is **Supabase**, not a custom Node/Express backend. Supabase bundles Postgres (DB), authentication, and file storage behind a JS SDK and auto-generated REST API. For V1, the server only needs to do CRUD (auth, save scores/progress, serve song files) — all of which Supabase covers out of the box. A custom backend would only become necessary if we need server logic Supabase can't express directly; not needed for this milestone.
+The "Server" box in the architecture diagram is **Supabase**, not a custom Node/Express backend. Supabase bundles Postgres (DB), authentication, and file storage behind a JS SDK and auto-generated REST API. For V1, the server only needs to do CRUD (auth, save scores/progress, serve song files) — all of which Supabase covers out of the box. A custom backend would only become necessary if we need server logic Supabase can't express directly.
 
 ## Library list (web/JS stack), by feature
 
