@@ -19,17 +19,28 @@
   the note once; solfège toggle.
 - **Voice sight-reading, practice mode (V2 of the interface, still this semester):**
   play straight through, post-run analysis of sung vs. score.
-- **Guitar responsive tabs (audio only):** right chord played, chord cleanliness /
-  "fuzziness" (not pressing hard enough, muted strings), tempo/timing, strumming
-  pattern played vs. expected.
+- **Guitar responsive tabs (audio only):** chord *verification* against the expected
+  chord, chord cleanliness / "fuzziness" (not pressing hard enough, muted strings),
+  tempo/timing, strumming pattern played vs. expected.
+- **Guitar Learn mode (V1):** lesson holds on the current chord until verified, with a
+  **soft gate** — after 3 attempts it advances anyway and records the result (a strict
+  gate on imperfect detection is the Simply Guitar failure mode); manual skip always
+  visible; hint plays the chord and shows finger positions.
+- **Guitar Play mode (V1, second):** straight through at tempo, nothing stops you,
+  post-run played-vs-score breakdown marked on the notation.
+- **Tempo control** on the practice screen (50–100% of written tempo, persisted per
+  song) — a verbatim competitor complaint is *"doesn't even let you choose the tempo."*
+- **Lesson map supports knowledge-only nodes** (no mic needed) alongside play-along
+  nodes — Lesson 1 is guitar anatomy, so a beginner reaches real instruction before
+  our hardest technical problem can fail them.
 - **Run-through summaries:** list of attempts, last score, recording included,
   clicking the music highlights patchy/spotty areas.
 - **Built-in public-domain song library** + **MusicXML import** (we will *try* to
   support MuseScore and MIDI with file transformation — treat conversion beyond
   MusicXML as best-effort).
-- **Dynamics detection** (volume up/down) and **generated random melodies** for
-  sight-reading — if the audio pipeline lands early enough (these ride on the same
-  foundation).
+- **Dynamics detection** (volume up/down), **generated random melodies** for
+  sight-reading, and **random chord progressions** from unlocked chords — if the audio
+  pipeline lands early enough (these ride on the same foundation).
 
 ## Explicitly OUT of V1
 
@@ -39,6 +50,7 @@
 | Group / social features (shared files, group sessions, collaborators, notes, multi-instrument songs) | Requires sync infrastructure; V1 is single-player | Future versions |
 | Sheet-music-reading curriculum (full course) | V1 renders notation but doesn't teach it as a curriculum | Future versions |
 | Advanced guitar techniques (slides, bends, hammer-ons, pull-offs) | V1 covers chords/strumming basics only | Future versions |
+| Guitar "Changes" mode (two chords alternating, scored on clean changes) | Depends on the gate + timing score working first (F38) | Next version |
 | Full-song playthroughs | V1 is lesson- and practice-piece-scale | Future versions |
 | YouTube play-along scoring | Depends on timing/sync work beyond V1 | Future versions |
 | Piano | Deck vision includes it; semester scope is guitar + voice | Future versions |

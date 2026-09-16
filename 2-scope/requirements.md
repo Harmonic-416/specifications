@@ -28,15 +28,30 @@ MoSCoW priorities: **M** = must (V1 fails without it), **S** = should,
 |---|---|---|
 | F11 | Real-time mic pitch detection; each note scored hit / late / missed | M |
 | F12 | Live display of the sung note or relative pitch vs. the expected note | M |
-| F13 | Guided mode: cursor doesn't advance until the correct note; 3 misses → auto-skip recorded in score; manual skip; "hint" plays the note once | M |
-| F14 | Practice mode: uninterrupted play-through with post-run sung-vs-score analysis | S |
-| F15 | Solfège labels toggle on/off | S |
-| F16 | Guitar: chord identity check while held | M |
+| F13 | Guided mode (instrument-neutral): doesn't advance until the expected note/chord is verified; 3 misses → auto-skip recorded in score; manual skip; "hint" plays the expected note/chord once. Guitar-specific gate behavior in F28–F31 | M |
+| F14 | Practice/play mode (instrument-neutral): uninterrupted play-through with post-run performed-vs-score analysis. Guitar specifics in F32–F33 | S |
+| F15 | Notation label toggle (instrument-neutral): solfège for voice; frets / note names / finger numbers on guitar chord diagrams (F35) | S |
+| F16 | Guitar: chord **verification** while held — does the audio match the one expected chord (not arbitrary-chord recognition) | M |
 | F17 | Guitar: chord cleanliness ("fuzziness" — under-pressed / muted strings) | S |
 | F18 | Guitar: strumming pattern played vs. expected; timing/tempo score | S |
 | F19 | Dynamics detection (volume rising/falling) | C |
-| F20 | Random melody generation for sight-reading | C |
+| F20 | Random exercise generation (instrument-neutral): melodies for voice sight-reading; chord progressions for guitar (F36) | C |
 | F21 | Explicit "couldn't hear you" state when input is too quiet to score | M |
+
+### Guitar practice modes (adopted from [guitar-learning-path.md](../1-problem-and-users/guitar-learning-path.md))
+| # | Requirement | Priority |
+|---|---|---|
+| F28 | Guitar guided ("Learn") mode: lesson holds on the current chord until verified; **soft gate** — advances after N attempts (N=3) rather than blocking indefinitely | M |
+| F29 | Three misses → auto-skip, recorded in score; a miss is a failed strum **or** a silence timeout with no strum onset | M |
+| F30 | Manual skip / override, always visible during a lesson | M |
+| F31 | Hint: play the chord once through the reference synth **and** animate the finger positions onto the fretboard diagram | S |
+| F32 | Guitar "Play" mode: uninterrupted run at tempo, no gating | S |
+| F33 | Post-run played-vs-score analysis — per chord: verified / wrong / not heard, and early / on / late — marked on the notation | S |
+| F34 | Live chord state during a run (expected / heard something else / heard nothing). Per-string indicators depend on F17 | S |
+| F35 | Chord-diagram label toggle: fret numbers, note names, or finger numbers | S |
+| F36 | Random chord-progression generation from unlocked chords, at a chosen tempo | C |
+| F37 | Tempo control on the practice screen, 50–100% of written tempo, persisted per song | M |
+| F38 | "Changes" mode: two chords alternating at a user-set tempo, ungated, scored on clean changes per window (depends on F28 + F18) | W (next version) |
 
 ### Review
 | # | Requirement | Priority |
