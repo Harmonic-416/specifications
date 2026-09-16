@@ -23,6 +23,7 @@ specifications/
 ├── 2-scope/
 │   ├── v1-scope.md                  ← what's IN v1, what's explicitly OUT, won't-dos
 │   ├── requirements.md              ← functional + non-functional, MoSCoW-prioritized
+│   ├── roadmap.md                   ← four versions: audio spike / voice loop / guitar loop / lessons
 │   └── potential-problems.md        ← technical risks: pitch vs. noise, chord detection, sync
 │
 └── 3-architecture/
@@ -38,6 +39,7 @@ specifications/
    [Real user pain stories](1-problem-and-users/user-pain-stories.md)
 2. [V1 scope](2-scope/v1-scope.md) →
    [Requirements](2-scope/requirements.md) →
+   [Roadmap](2-scope/roadmap.md) →
    [Potential problems](2-scope/potential-problems.md)
 3. [Rough architecture](3-architecture/rough-architecture.md) →
    [Tech stack](3-architecture/tech-stack.md)
