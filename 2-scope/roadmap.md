@@ -22,7 +22,7 @@ If mobile-Safari pitch detection fails here, we still have time to pivot desktop
 - **Pitch-detection spike on a real phone in Safari** — measured mic-to-score
   latency vs. the ≲100 ms target (N1, N2). Go/no-go written up.
 - App shell on the decided stack (React + Vite PWA, Supabase for auth/DB/storage —
-  see [tech-stack-2.md](../3-architecture/tech-stack-2.md)): navigation, auth +
+  see [tech-stack.md](../3-architecture/tech-stack.md)): navigation, auth +
   per-user progress storage (F1).
 - Onboarding sound check: mic permission → live level meter → "play any string" —
   the first proof detection works on the user's device; tuner rides on this.

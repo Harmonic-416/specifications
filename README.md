@@ -28,10 +28,8 @@ specifications/
 │   └── potential-problems.md        ← technical risks: pitch vs. noise, chord detection, sync
 │
 └── 3-architecture/
-    ├── rough-architecture.md        ← Mermaid sketch: client audio pipeline, thin server
-    ├── rough-architecture-2.md      ← current: adds voice-vs-guitar analyzer detail, modularity argument
-    ├── tech-stack.md                ← Flutter-vs-PWA decision, library list by feature
-    └── tech-stack-2.md              ← current: decisions locked — React + Vite PWA, Supabase, AlphaTab, Pitchy
+    ├── rough-architecture.md        ← Mermaid sketch: client audio pipeline, thin Supabase server, voice-vs-guitar analyzers
+    └── tech-stack.md                ← decisions locked: React + Vite PWA, Supabase, AlphaTab, Pitchy; library list by feature
 ```
 
 ## Reading order
@@ -45,9 +43,8 @@ specifications/
    [Requirements](2-scope/requirements.md) →
    [Roadmap](2-scope/roadmap.md) →
    [Potential problems](2-scope/potential-problems.md)
-3. [Rough architecture](3-architecture/rough-architecture-2.md) →
-   [Tech stack](3-architecture/tech-stack-2.md)
-   (the un-numbered originals are the earlier drafts)
+3. [Rough architecture](3-architecture/rough-architecture.md) →
+   [Tech stack](3-architecture/tech-stack.md)
 
 Plus the cross-cutting [design philosophy](design-philosophy.md) and
 [division of labor](division-of-labor.md).
