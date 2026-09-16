@@ -1,6 +1,5 @@
 # Division of Labor
 
-*(Draft — assign names to each area.)*
 
 ## Artifacts
 
