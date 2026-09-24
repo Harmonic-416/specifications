@@ -20,19 +20,29 @@ The "Server" box in the architecture diagram is **Supabase**, not a custom Node/
 
 ## Library list (web/JS stack), by feature
 
-### Notation & tab rendering
+### Notation & tab rendering — one renderer per instrument
+
+**Decision (M2):** guitar renders with **alphaTab**, voice renders with
+**OpenSheetMusicDisplay (OSMD)**. Both read MusicXML, so the song library stays one
+format.
+
+**Why two:** alphaTab is the only option that draws guitar tab, and it plays and
+exports what it renders. The voice side was built on OSMD first because its cursor
+iterator hands us the timing model (expected notes + playback schedule) for free, and
+voice never needs tab.
 
 | Library | Use |
 |---|---|
-| **AlphaTab** | The core pick. Cross-platform music notation and guitar tablature rendering; loads Guitar Pro, its own AlphaTex markup, or MusicXML, and renders standard notation and tabs in the browser. Built-in MIDI synth for playback, so it can double as the "reference audio" player. |
-| VexFlow | Alternative/fallback for pure standard-notation rendering if AlphaTab is heavier than needed for the voice/piano side — less guitar-tab-focused. |
+| **alphaTab** (guitar) | Tab + standard notation side by side; loads Guitar Pro 3–8, alphaTex, or MusicXML with `<technical>` string/fret tags. Built-in synth (alphaSynth) for reference playback and cursor; `MidiFileGenerator` exports MIDI and `Gp7Exporter` exports Guitar Pro. It does **not** import MIDI or derive frets from pitch — MIDI → tab goes through our MIDI → MusicXML converter plus a fret-assignment step. |
+| **OSMD** (voice) | Standard notation from MusicXML; its cursor iterator is the source of truth for expected notes and playback timing on the voice side. |
+| VexFlow | Fallback for pure standard notation (OSMD is built on it). |
 | Tonal.js | Music theory helpers (scales, intervals, chord names, key signatures) — useful for the random-melody sight-reading generator and for labeling detected chords. |
 
 ### Audio capture (shared foundation)
 
 | Library | Use |
 |---|---|
-| Web Audio API + AudioWorklet (browser native) | The audio pipeline: mic → worklet on its own thread → raw PCM buffers fed into the pitch/chord/volume detectors. Everything below consumes this. |
+| Web Audio API + AudioWorklet (browser native) | The audio pipeline: mic → worklet on its own thread → raw PCM buffers fed into the pitch/chord/volume detectors. Everything below consumes this. The worklet sees every sample (no polling gaps), so it also detects strum onsets with sample-accurate timestamps — which guitar needs to open its chord-detection window. Supported in Safari 14.5+ on iOS; the mic needs HTTPS and a user tap to start. First consumer: the guitar tuner (F39). |
 
 ### Voice pitch detection (acapella feature)
 

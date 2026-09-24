@@ -5,7 +5,8 @@
 flowchart TB
     subgraph Client["Client (PWA)"]
         UI["UI layer<br/>lesson map · playlist · summaries"]
-        Notation["Notation renderer<br/>(alphaTab: tab + standard, click-to-seek)"]
+        Notation["Notation renderer — one per instrument<br/>guitar: alphaTab (tab + standard, MIDI / Guitar Pro export)<br/>voice: OSMD (standard notation)"]
+        Tuner["Guitar tuner (F39)<br/>sound check · cents off each string"]
         Playback["Playback / transport<br/>(alphaSynth or Tone.js — countdown, tempo clock)"]
         subgraph AudioPipe["Audio pipeline"]
             Mic["Mic (getUserMedia)"]
@@ -29,6 +30,8 @@ flowchart TB
     Mic --> Worklet
     Worklet --> Pitch & Chord & Volume
     Pitch & Chord & Volume --> Scoring
+    Pitch --> Tuner
+    Tuner --> UI
     Notation -- "expected notes + timing" --> Scoring
     Scoring -- "live feedback" --> UI
     Playback --> Notation
@@ -42,7 +45,7 @@ flowchart TB
 ## Key decisions embedded in this sketch
 
 1. **All real-time audio analysis happens on the client.** Streaming mic audio to a server can't meet note-by-note latency, and processing locally avoids the heavy-data problem for the live path. Only *results* (scores) and *optional recordings* (compressed) go to the server.
-2. **The notation renderer is the source of truth for "expected notes."** alphaTab parses the score; the scoring engine compares detected vs. expected using the playback transport's clock. One clock, no drift.
+2. **The notation renderer is the source of truth for "expected notes."** The renderer parses the score (alphaTab for guitar, OSMD for voice); the scoring engine compares detected vs. expected using the playback transport's clock. One clock, no drift.
 3. **The server is thin in V1:** auth, progress, scores, song files. All the future social features (group sessions, collaborators) hang off the same API later without touching the audio pipeline.
 4. **The three analyzers (pitch / chord / volume) share one AudioWorklet buffer** — voice and guitar features are the same pipeline with different analyzers plugged in.
 

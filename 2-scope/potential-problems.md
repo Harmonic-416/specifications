@@ -19,9 +19,22 @@
   state (F21) instead of scoring silence as a miss.
 - Per-string live indicators (F34) depend on cleanliness detection (F17, an S) —
   if F17 slips, F34 degrades to whole-chord state.
-- **Open gap — tuning:** an out-of-tune guitar makes every detection claim false, and
-  no spec covers a tuner. Pitch detection gives us one nearly for free; design it into
-  onboarding (sound check) rather than discovering the gap late.
+- **Tuning (resolved by F39):** an out-of-tune guitar makes every detection claim
+  false. The tuner rides on the same pitch detector and lives in the onboarding sound
+  check, and scored guitar runs prompt for it (without blocking).
+- **Low strings and harmonics:** the low E (82 Hz) is close to the detector's floor and
+  its second harmonic can read louder than the fundamental — the tuner median-filters
+  frames and snaps to the nearest string within ±600¢ so it doesn't jump strings.
+
+## Guitar notation conversion
+- alphaTab renders tab only when the file carries string/fret data (Guitar Pro,
+  alphaTex, MusicXML with `<technical>` tags); it does not derive frets from pitch
+  and cannot import MIDI. MIDI → tab therefore needs our own fret assignment, and
+  its fingerings are *playable* but not always the ones a human would pick.
+- alphaTab exports MIDI and Guitar Pro but not MusicXML, so a Guitar Pro upload
+  can't be stored as MusicXML — the "store MusicXML only" rule needs a guitar
+  exception (open question for the team).
+- Plain-text ("ASCII") tabs have no rhythm; any import has to guess durations.
 
 ## Computer vision (stretch goal)
 - Mapping hand landmarks onto fret/string positions is a nontrivial calibration

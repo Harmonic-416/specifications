@@ -47,10 +47,15 @@ instruction: *play any string.* No account wall, no instrument survey, no tour.
 The level meter is doing quiet work: it is the first and cheapest proof that detection
 functions on this user's device, before any score depends on it.
 
-**Open gap — tuning.** None of the current spec documents cover a tuner, and an
-out-of-tune guitar makes every downstream detection claim false. Pitch detection gives
-us a tuner nearly for free, so this is a gap to close rather than a hard problem. Not
-designed yet; flagged here so it isn't discovered late.
+**Tuning — closed by [F39](../2-scope/requirements.md).** An out-of-tune guitar makes
+every downstream detection claim false, so the sound check includes a tuner: the user
+plays each open string, the app names the string it hears (standard tuning, EADGBE),
+shows how many cents sharp or flat it is, and ticks it off once it holds in tune.
+Scored guitar runs prompt for a tune-up if the tuner hasn't been used this session,
+but never block — the same "failsafes over frustration" rule as the soft gate.
+
+> \*\*As a beginner,\*\* I want the app to help me tune before it grades me, so that a
+> wrong verdict is never really my guitar being out of tune. \*(F39)\*
 
 \---
 
@@ -354,8 +359,8 @@ depends on F17 landing.
 
 ## Open questions
 
-1. **Tuning** — is a built-in tuner part of onboarding, or assumed away? Currently
-unspecified anywhere in the repo.
+1. ~~**Tuning** — is a built-in tuner part of onboarding, or assumed away?~~ **Resolved:**
+built in, part of the sound check, standard tuning only (F39, must).
 2. **Handoff boundary** — confirm with Jamie that this walkthrough ends at live feedback;
 run-through summaries (F22–F24) are his.
 3. **Lesson 1 depth** — how many parts does the anatomy lesson name? Current proposal
