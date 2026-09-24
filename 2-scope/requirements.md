@@ -16,12 +16,12 @@ MoSCoW priorities: **M** = must (V1 fails without it), **S** = should,
 | # | Requirement | Priority |
 |---|---|---|
 | F4 | Playlist of practice pieces; V1 ships 3 hardcoded songs | M |
-| F5 | Tab and standard notation rendered side by side | M |
+| F5 | Tab and standard notation rendered side by side (renderer per instrument: alphaTab for guitar — the only one that draws tab; OSMD for voice) | M |
 | F6 | Reference audio playback, toggleable during practice | M |
 | F7 | Click/drag anywhere in the music to start playback from that point | S |
 | F8 | Countdown before a practice run starts | S |
 | F9 | MusicXML import of user scores | S |
-| F10 | MuseScore/MIDI file transformation | C |
+| F10 | MuseScore/MIDI file transformation. Guitar: MIDI import gets tab via automatic fret assignment; guitar scores export to MIDI and Guitar Pro | C |
 
 ### Listening & scoring
 | # | Requirement | Priority |
@@ -52,6 +52,7 @@ MoSCoW priorities: **M** = must (V1 fails without it), **S** = should,
 | F36 | Random chord-progression generation from unlocked chords, at a chosen tempo | C |
 | F37 | Tempo control on the practice screen, 50–100% of written tempo, persisted per song | M |
 | F38 | "Changes" mode: two chords alternating at a user-set tempo, ungated, scored on clean changes per window (depends on F28 + F18) | W (next version) |
+| F39 | Guitar tuner in the onboarding sound check: standard tuning (EADGBE), auto-detects the nearest string with a manual lock, shows cents off target and an in-tune state; prompted before scored guitar runs but never blocks them | M |
 
 ### Review
 | # | Requirement | Priority |
